@@ -14,18 +14,6 @@ def plot_many_images(images, titles, rows=1, columns=2):
         plt.xticks([]), plt.yticks([])  # Hide tick marks
     plt.show()
 
-
-def show_image(img):
-    """Shows an image until any key is pressed"""
-#    print(type(img))
-#    print(img.shape)
-#    cv2.imshow('image', img)  # Display the image
-#    cv2.imwrite('images/gau_sudoku3.jpg', img)
-#    cv2.waitKey(0)  # Wait for any key to be pressed (with the image window active)
-#    cv2.destroyAllWindows()  # Close all windows
-    return img
-
-
 def show_digits(digits, colour=255):
     """Shows list of 81 extracted digits in a grid format"""
     rows = []
@@ -309,25 +297,17 @@ def get_digits(img, squares, size):
 
 
 def parse_grid(original):
-    #original = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
     original = cv2.cvtColor(original, cv2.COLOR_BGR2GRAY)
     processed = pre_process_image(original)
-    
-#    cv2.namedWindow('processed',cv2.WINDOW_AUTOSIZE)
-#    processed_img = cv2.resize(processed, (500, 500))          # Resize image
-#    cv2.imshow('processed', processed_img)
+
     
     corners = find_corners_of_largest_polygon(processed)
     cropped = crop_and_warp(original, corners)
-    
-#    cv2.namedWindow('cropped',cv2.WINDOW_AUTOSIZE)
-#    cropped_img = cv2.resize(cropped, (500, 500))              # Resize image
-#    cv2.imshow('cropped', cropped_img)
-    
+
     squares = infer_grid(cropped)
-#    print(squares)
+
     digits = get_digits(cropped, squares, 28)
-#    print(digits)
+
     final_image = show_digits(digits)
     return final_image
 

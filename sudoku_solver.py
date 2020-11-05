@@ -1,4 +1,6 @@
-def canput(grid, x, y, n):
+#Simple backtracking algorithm to solve the sudoku
+
+def canput(grid, x, y, n): # Checks if number can be put on the given cell or not
     for i in range(9):
         if grid[i][y] == n: return False
     for i in range(9):
@@ -10,13 +12,13 @@ def canput(grid, x, y, n):
             if grid[i+x0][j+y0] == n: return False
     return True
     
-def find_em(board):
+def find_em(board): # finds out the empty cell 
 	for i in range(9):
 		for j in range(9):
 			if board[i][j] == 0: return (i, j)
 
 
-def solve(board):
+def solve(board): # recursive solution 
 	cor = find_em(board)
 	if not cor: return True
 	else: x, y = cor

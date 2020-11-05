@@ -2,7 +2,7 @@ import streamlit as st
 import cv2
 import numpy as np
 import time
-#from extract_digits import ExtractDigits
+from extract_digits import ExtractDigits
 from extract_sudoku import ExtractSudoku
 from sudoku_solver import solve
 
@@ -51,7 +51,3 @@ if opencv_image is not None:
     else: 
         st.title("**Solution**")
         st.markdown(opmes + display(ex_digits))
-
-
-    
-

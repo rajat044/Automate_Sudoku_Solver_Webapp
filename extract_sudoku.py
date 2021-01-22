@@ -21,8 +21,7 @@ def show_digits(digits, colour=255):
     for i in range(9):
         row = np.concatenate(with_border[i * 9:((i + 1) * 9)], axis=1)
         rows.append(row)
-    img = show_image(np.concatenate(rows))
-    return img
+    return np.concatenate(rows)
  
 
 def convert_when_colour(colour, img):
@@ -48,7 +47,6 @@ def display_points(in_img, points, radius=5, colour=(0, 0, 255)):
 
     for point in points:
         img = cv2.circle(img, tuple(int(x) for x in point), radius, colour, -1)
-    #show_image(img)
     return img
 
 
@@ -57,7 +55,6 @@ def display_rects(in_img, rects, colour=(0, 0, 255)):
     img = convert_when_colour(colour, in_img.copy())
     for rect in rects:
         img = cv2.rectangle(img, tuple(int(x) for x in rect[0]), tuple(int(x) for x in rect[1]), colour)
-    #show_image(img)
     return img
 
 
@@ -65,7 +62,6 @@ def display_contours(in_img, contours, colour=(0, 0, 255), thickness=2):
     """Displays contours on the image."""
     img = convert_when_colour(colour, in_img.copy())
     img = cv2.drawContours(img, contours, -1, colour, thickness)
-    #show_image(img)
 
 
 def pre_process_image(img, skip_dilate=False):

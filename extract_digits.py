@@ -30,8 +30,10 @@ def ExtractDigits(sudoku):
     for i in range(9):
         for j in range(9):
             image = sudoku[i*50:(i+1)*50,j*50:(j+1)*50]
+            print(image)
             if image.sum() > 25000:
-                grid[i][j] = identify_number(image)
+                #grid[i][j] = identify_number(image)
+                grid[i][j] = 0
             else:
                 grid[i][j] = 0
     return grid.astype(int)

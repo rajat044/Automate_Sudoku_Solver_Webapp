@@ -37,8 +37,8 @@ if opencv_image is not None:
         time.sleep(2)
         st.success('Sudoku Has Been Successfully Extracted')
 
-    ex_digits = [[0 for _ in range(9)] for _ in range(9)]
-    print(ex_digits)
+    #ex_digits = [[0 for _ in range(9)] for _ in range(9)]
+    #print(ex_digits)
     st.markdown(ipmes + display(ex_digits))
     st.write('\n\n')
 

@@ -5,4 +5,3 @@ opencv-python
 matplotlib
 tensorflow 
 keras
-libgl1-mesa-glx

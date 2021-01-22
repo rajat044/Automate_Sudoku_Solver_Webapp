@@ -38,13 +38,14 @@ if opencv_image is not None:
         st.success('Sudoku Has Been Successfully Extracted')
 
     ex_digits = [[0 for _ in range(9)] for _ in range(9)]
+    print(ex_digits)
     st.markdown(ipmes + display(ex_digits))
     st.write('\n\n')
 
 
     with st.spinner('Sudoku is being solved'):
         time.sleep(1)
-        sol = solve(ex_digits)
+        solve(ex_digits)
 
     if not sol: 
         st.error("**This Sudoku can't be solved**.")

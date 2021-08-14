@@ -33,6 +33,9 @@ elif uploaded_file is not None:
 
 if opencv_image is not None:
     sudoku_image = ExtractSudoku(opencv_image)
+    cv2.imwrite("sdkimg", sdk)
+    st.image(sdk)
+             
     plt.imshow(sudoku_image)
     ex_digits = ExtractDigits(sudoku_image)
     with st.spinner('Running a Neural Net to extract Sudoku from image'):

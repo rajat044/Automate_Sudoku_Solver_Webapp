@@ -45,7 +45,7 @@ if opencv_image is not None:
 
     with st.spinner('Sudoku is being solved'):
         time.sleep(1)
-        solve(ex_digits)
+        sol = solve(ex_digits)
 
     if not sol: 
         st.error("**This Sudoku can't be solved**.")

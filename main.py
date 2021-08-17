@@ -33,7 +33,6 @@ elif uploaded_file is not None:
 
 if opencv_image is not None:
     sudoku_image = ExtractSudoku(opencv_image)
-    cv2.imwrite("sdkimg", sudoku_image)
     st.image(sudoku_image)
              
     plt.imshow(sudoku_image)

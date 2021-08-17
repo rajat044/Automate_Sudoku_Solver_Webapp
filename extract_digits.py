@@ -17,7 +17,7 @@ print("Loaded saved model from disk.")
 # evaluate loaded model on test data
 def identify_number(image):
     image_resize = cv2.resize(image, (28,28))    # For plt.imshow
-    image_resize_2 = image_resize.reshape(1,28,28,1)    # For input to model.predict_classes
+    image_resize_2 = image_resize.reshape(28,28)    # For input to model.predict_classes
 #   cv2.imshow('number', image_test_1)
     loaded_model_pred = np.argmax(loaded_model.predict(image_resize_2 , verbose = 0), axis = -1)
 #    print('Prediction of loaded_model: {}'.format(loaded_model_pred[0]))

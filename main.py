@@ -38,6 +38,7 @@ if opencv_image is not None:
              
     plt.imshow(sudoku_image)
     ex_digits = ExtractDigits(sudoku_image)
+    st.write(ex_digits)
     with st.spinner('Running a Neural Net to extract Sudoku from image'):
         time.sleep(2)
         st.success('Sudoku Has Been Successfully Extracted')

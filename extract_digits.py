@@ -5,12 +5,14 @@ import numpy as np
 from keras.models import model_from_json
 
 # Load the saved model
-json_file = open('Model/model.json', 'r')
-loaded_model_json = json_file.read()
-json_file.close()
-loaded_model = model_from_json(loaded_model_json)
-# load weights into new model
-loaded_model.load_weights("Model/model.h5")
+# json_file = open('Model/model.json', 'r')
+# loaded_model_json = json_file.read()
+# json_file.close()
+# loaded_model = model_from_json(loaded_model_json)
+# # load weights into new model
+# loaded_model.load_weights("Model/model.h5")
+model_path = 'Model/digitRecognition.h5'
+emotion_model = load_model(model_path)
 print("Loaded saved model from disk.")
  
 # evaluate loaded model on test data

@@ -13,7 +13,7 @@ def predict(img_grid):
     image = image.reshape(1, 28, 28, 1)
     image /= 255
     
-    model = load_model('Modle/model.h5')
+    model = load_model('Model/model.h5')
     pred = model.predict(image.reshape(1, 28, 28, 1), batch_size=1)
 
     return pred.argmax()

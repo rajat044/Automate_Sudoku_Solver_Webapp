@@ -34,7 +34,8 @@ def find_corners(img):
         # closed – If true, the approximated curve is closed. Otherwise, it is not closed.
         # approxPolyDP returns the approximate curve in the same type as the input curve
         apr = cv2.approxPolyDP(c, 0.015*peri, True)
-        return [(c[0][0], c[0][1]) for c in apr]
+        if len(apr) == 4: 
+            return [(c[0][0], c[0][1]) for c in apr]
 
 def per_transformation(img, corners):
 #actuall order of corners = tr, tl, bl, br

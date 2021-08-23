@@ -36,37 +36,37 @@ def find_corners(img):
         apr = cv2.approxPolyDP(c, 0.015*peri, True)
         return [(c[0][0], c[0][1]) for c in apr]
 
-    def per_transformation(img, corners):
-    #actuall order of corners = tr, tl, bl, br
-    #to move it clockwise order
-        cor = corners[:]
-        tl, tr, br, bl = corners
+def per_transformation(img, corners):
+#actuall order of corners = tr, tl, bl, br
+#to move it clockwise order
+    cor = corners[:]
+    tl, tr, br, bl = corners
 
-        #calculating the width of sudoku
-        #calculating the distance between br, bl and tr, tl 
-        #taking maximum of them as width
-        wiA = np.sqrt(((br[0] - bl[0])**2) + ((br[1] - bl[1])**2))
-        wiB = np.sqrt(((tr[0] - tl[0])**2) + ((tr[1] - tl[1]))**2)
+    #calculating the width of sudoku
+    #calculating the distance between br, bl and tr, tl 
+    #taking maximum of them as width
+    wiA = np.sqrt(((br[0] - bl[0])**2) + ((br[1] - bl[1])**2))
+    wiB = np.sqrt(((tr[0] - tl[0])**2) + ((tr[1] - tl[1]))**2)
 
-        width = max(int(wiA), int(wiB))
+    width = max(int(wiA), int(wiB))
 
-        #calculating the hight of sudoku
-        #calculating the distance between tr, br and tl, bl 
-        #taking maximum of them as width
-        hiA = np.sqrt(((tr[0] - br[0])**2) + ((tr[1] - br[1])**2))
-        hiB = np.sqrt(((tl[0] - bl[0])**2) + ((tl[1] - bl[1]))**2)
+    #calculating the hight of sudoku
+    #calculating the distance between tr, br and tl, bl 
+    #taking maximum of them as width
+    hiA = np.sqrt(((tr[0] - br[0])**2) + ((tr[1] - br[1])**2))
+    hiB = np.sqrt(((tl[0] - bl[0])**2) + ((tl[1] - bl[1]))**2)
 
-        height = max(int(hiA), int(hiB))
+    height = max(int(hiA), int(hiB))
 
-        dim = np.array([[0, 0], [width - 1, 0], [width - 1, height - 1],
-                        [0, height - 1]], dtype = 'float32')
+    dim = np.array([[0, 0], [width - 1, 0], [width - 1, height - 1],
+                    [0, height - 1]], dtype = 'float32')
 
-        cor = np.array(cor, dtype = 'float32')
+    cor = np.array(cor, dtype = 'float32')
 
-        grid = cv2.getPerspectiveTransform(cor, dim)
+    grid = cv2.getPerspectiveTransform(cor, dim)
 
-        #return cv2.warpPerspective(img, dsize = (width, height))
-        return cv2.resize(img, (width, height))
+    #return cv2.warpPerspective(img, dsize = (width, height))
+    return cv2.resize(img, (width, height))
     
 def create_image_grid(img):
     grid = np.copy(img)

@@ -34,7 +34,7 @@ if opencv_image is not None:
     sudoku_image = extract(opencv_image)
     ex_digits = extract_number_from_image(sudoku_image)
     
-    st.write(ex_digits)
+    
     with st.spinner('Running a Neural Net to extract Sudoku from image'):
         time.sleep(2)
         st.success('Sudoku Has Been Successfully Extracted')

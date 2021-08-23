@@ -66,8 +66,8 @@ def per_transformation(img, corners):
 
     grid = cv2.getPerspectiveTransform(cor, dim)
 
-    return cv2.warpPerspective(img, dsize = (width, height))
-    #return cv2.resize(img, (width, height))
+    #return cv2.warpPerspective(img, dsize = (width, height))
+    return cv2.resize(img, (width, height))
     
 def create_image_grid(img):
     grid = np.copy(img)

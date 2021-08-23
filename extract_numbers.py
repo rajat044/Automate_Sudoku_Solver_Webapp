@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 from keras.models import load_model
-from img_processing import scale_and_centre,  order_corner_points
+from img_processing import scale_and_centre
 
 
 def predict(img_grid):

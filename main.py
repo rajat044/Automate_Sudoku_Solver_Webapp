@@ -1,6 +1,6 @@
 import streamlit as st
 import numpy as np
-from img_preprocessing import extract
+from img_processing import extract
 from extract_numbers import extract_number_from_image
 from sudoku_solver import solve
 import cv2

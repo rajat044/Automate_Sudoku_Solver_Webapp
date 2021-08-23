@@ -1,11 +1,10 @@
 import streamlit as st
-import cv2
-import matplotlib.pyplot as plt
 import numpy as np
-import time
-from extract_digits import ExtractDigits
-from extract_sudoku import ExtractSudoku
+from img_preprocessing import extract
+from extract_numbers import extract_number_from_image
 from sudoku_solver import solve
+import cv2
+import time
 
 def display(grid):
     
@@ -32,8 +31,8 @@ elif uploaded_file is not None:
     opencv_image = cv2.imdecode(file_bytes, 1)
 
 if opencv_image is not None:
-    sudoku_image = ExtractSudoku(opencv_image)
-    ex_digits = ExtractDigits(sudoku_image)
+    sudoku_image = extract(opencv_image)
+    ex_digits = extract_number_from_image(sudoku_image)
     
     st.write(ex_digits)
     with st.spinner('Running a Neural Net to extract Sudoku from image'):

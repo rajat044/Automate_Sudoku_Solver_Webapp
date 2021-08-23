@@ -18,7 +18,7 @@ def predict(img_grid):
 
     return pred.argmax()
 
-def extract_number_image(img_grid):
+def extract_number_from_image(img_grid):
     tmp_sudoku = [[0 for i in range(9)] for j in range(9)]
     for i in range(9):
         for j in range(9):

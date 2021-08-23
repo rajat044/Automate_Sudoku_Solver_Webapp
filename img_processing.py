@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 #Taking input as grayscale image
 
 def preprocessing(img):
-    g_img = cv2.imread(img, cv2.IMREAD_GRAYSCALE)
+    g_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     #applying Gaussian blur to remove noise
     b_img = cv2.GaussianBlur(g_img, (9, 9), 0)
     #applying threshold algorithm for segmetation
@@ -145,9 +145,8 @@ def scale_and_centre(img, size, margin=20, background=0):
     img = cv2.copyMakeBorder(img, t_pad, b_pad, l_pad, r_pad, cv2.BORDER_CONSTANT, None, background)
     return cv2.resize(img, (size, size))
 
-def extract():
-    img = cv2.imread(path1)
-    processed_sudoku = preprocessing(path1)
+def extract(img):
+    processed_sudoku = preprocessing(img)
     sudoku = find_corners(processed_sudoku)
     transformed = per_transformation(img, sudoku)
   

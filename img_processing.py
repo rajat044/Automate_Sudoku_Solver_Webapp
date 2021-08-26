@@ -156,9 +156,9 @@ def scale_and_centre(img, size, margin=20, background=0):
     return cv2.resize(img, (size, size))
 
 def extract(img):
-    processed_sudoku = processing(img)
+    processed_sudoku = preprocessing(img)
     sudoku = find_corners(processed_sudoku)
-    transformed = perspective_transform(img, sudoku)
+    transformed = per_transformation(img, sudoku)
     transformed = cv2.resize(transformed, (450, 450))
     sudoku = create_image_grid(transformed)
     return sudoku

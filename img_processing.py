@@ -34,7 +34,8 @@ def find_corners(img):
         # closed – If true, the approximated curve is closed. Otherwise, it is not closed.
         # approxPolyDP returns the approximate curve in the same type as the input curve
         apr = cv2.approxPolyDP(c, 0.015*peri, True)
-        return apr if len(apr) == 4
+        return apr if len(apr) == 4 else None
+    
 def order_corners(corners):
     # Corners[0],... stores in format [[x y]]
     # Separate corners into individual points

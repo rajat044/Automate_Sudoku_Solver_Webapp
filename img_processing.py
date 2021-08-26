@@ -34,15 +34,23 @@ def find_corners(img):
         # closed – If true, the approximated curve is closed. Otherwise, it is not closed.
         # approxPolyDP returns the approximate curve in the same type as the input curve
         apr = cv2.approxPolyDP(c, 0.015*peri, True)
-        if len(apr) == 4: 
-            return [(c[0][0], c[0][1]) for c in apr]
+        return apr if len(apr) == 4
+def order_corners(corners):
+    # Corners[0],... stores in format [[x y]]
+    # Separate corners into individual points
+    # Index 0 - top-right
+    #       1 - top-left
+    #       2 - bottom-left
+    #       3 - bottom-right
+    corners = [(corner[0][0], corner[0][1]) for corner in corners]
+    tr, tl, bl, br = corners[0], corners[1], corners[2], corners[3]
+    return tl, tr, br, bl
 
 def per_transformation(img, corners):
 #actuall order of corners = tr, tl, bl, br
 #to move it clockwise order
-    cor = corners[:]
-    tl, tr, br, bl = corners
-
+    cor = order_corners(corners)
+    tl, tr, br, bl = cor
     #calculating the width of sudoku
     #calculating the distance between br, bl and tr, tl 
     #taking maximum of them as width
@@ -66,8 +74,8 @@ def per_transformation(img, corners):
 
     grid = cv2.getPerspectiveTransform(cor, dim)
 
-    #return cv2.warpPerspective(img, dsize = (width, height))
-    return cv2.resize(img, (width, height))
+    return cv2.warpPerspective(img, dsize = (width, height))
+    #return cv2.resize(img, (width, height))
     
 def create_image_grid(img):
     grid = np.copy(img)
@@ -147,10 +155,9 @@ def scale_and_centre(img, size, margin=20, background=0):
     return cv2.resize(img, (size, size))
 
 def extract(img):
-    processed_sudoku = preprocessing(img)
+    processed_sudoku = processing(img)
     sudoku = find_corners(processed_sudoku)
-    transformed = per_transformation(img, sudoku)
-  
+    transformed = perspective_transform(img, sudoku)
     transformed = cv2.resize(transformed, (450, 450))
     sudoku = create_image_grid(transformed)
     return sudoku
